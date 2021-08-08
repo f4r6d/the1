@@ -62,7 +62,7 @@ db = SQL(uri)
 
 
 
-db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+# db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
 # db.execute("UPDATE users SET admin = 1 WHERE id = 1")
 
