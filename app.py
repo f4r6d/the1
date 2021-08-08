@@ -62,11 +62,11 @@ db = SQL(uri)
 
 
 
-db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+# db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
 # db.execute("UPDATE users SET admin = 1 WHERE id = 1")
 
-# db.execute("CREATE TABLE songs (id SERIAL PRIMARY KEY, user_id SERIAL, track TEXT NOT NULL, message TEXT, likes NUMERIC NOT NULL DEFAULT 0, ts  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id))")
+db.execute("CREATE TABLE songs (id SERIAL PRIMARY KEY, user_id SERIAL, track TEXT NOT NULL, message TEXT, likes NUMERIC NOT NULL DEFAULT 0, ts  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id))")
 
 
 
