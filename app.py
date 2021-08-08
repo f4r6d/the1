@@ -34,7 +34,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.mp3', '.wav', '.aac', '.flac', '.m4a']
 
 #  app.config['UPLOAD_PATH'] = 'static/music/'
 
-app.config['UPLOAD_PATH'] = 'https://songs.s3.ir-thr-at1.arvanstorage.com/'
+app.config['UPLOAD_PATH'] = 'https://yegane.s3.ir-thr-at1.arvanstorage.com/'
 
 
 # Ensure responses aren't cached
@@ -62,7 +62,7 @@ db = SQL(uri)
 
 
 
-# gidb.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+# db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL, hash TEXT NOT NULL, admin numeric, last  TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
 # db.execute("UPDATE users SET admin = 1 WHERE id = 1")
 
@@ -104,7 +104,7 @@ def upload_files():
             logging.error(exc)
         else:
             try:
-                bucket = s3_resource.Bucket('songs')
+                bucket = s3_resource.Bucket('yegane')
 
                 bucket.put_object(
                     ACL='public-read-write',
@@ -139,7 +139,7 @@ def delete(id):
         try:
             object_name = song[0]['track']
 
-            bucket = s3_resource.Bucket('songs')
+            bucket = s3_resource.Bucket('yegane')
             object = bucket.Object(object_name)
             response = object.delete(
                 VersionId='string',
