@@ -41,12 +41,13 @@
         </td>
         <td>{{ file.message }}</td>
         {% if file.user_id %}
-          <td>{{ users[file.user_id - 1].username }}</td>
+          <td><a href="/users/{{ users[file.user_id - 1].username }}">{{ users[file.user_id - 1].username }}</a></td>
         {% else %}
           <td></td>
         {% endif %}
         {% if admin[0].admin %}
           <td><a href="/delete/{{ file.id }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete it?')">Delete</a></td>
+          <td>{{ file.ts }}</td>
         {% endif %}
       </tr>
     {% endfor %}
