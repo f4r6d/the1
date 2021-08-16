@@ -119,6 +119,16 @@ def upload_files():
     flash(filename + ' Uploaded')
     return redirect(url_for('index'))
 
+@app.route("/users/<u_name>")
+@login_required
+def user(u_name):
+    users = db.execute("SELECT * FROM users order by id")
+
+    files = db.execute("SELECT * FROM songs JOIN users ON songs.user_id=users.id WHERE users.username= ? order by id desc", u_name.lower())
+
+    admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+    return render_template('user.html', files=files, users=users, admin=admin, u_name=u_name)
+
 
 @app.route("/delete/<int:id>")
 def delete(id):
