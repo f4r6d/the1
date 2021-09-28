@@ -17,7 +17,7 @@
       </tr>
     {% for file in files %}
       <tr>
-        <td>{{ file.track }}</td>
+        <td>{{ file.track[:-4] | replace("_", " ") }}</td>
         <td>
           <audio preload='none' controls>
             <source src="https://yegane.s3.ir-thr-at1.arvanstorage.com/{{ file.track }}">

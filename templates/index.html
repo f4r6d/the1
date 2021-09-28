@@ -32,7 +32,7 @@
       </tr>
     {% for file in files %}
       <tr>
-        <td>{{ file.track }}</td>
+        <td>{{ file.track[:-4] | replace("_", " ") }}</td>
         <td>
           <audio preload='none' controls>
             <source src="https://yegane.s3.ir-thr-at1.arvanstorage.com/{{ file.track }}">
@@ -41,7 +41,7 @@
         </td>
         <td>{{ file.message }}</td>
         {% if file.user_id %}
-          <td><a href="/users/{{ users[file.user_id - 1].username }}">{{ users[file.user_id - 1].username }}</a></td>
+          <td><a href="/users/{{ users[file.user_id - 1].username }}">{{ users[file.user_id - 1].username | title }}</a></td>
         {% else %}
           <td></td>
         {% endif %}
