@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-        <form action="{{ url_for('messages') }}" method="post" confirm('Send SMS?')>
+        <form action="{{ url_for('messages') }}" method="post" onSubmit="return confirm('Send SMS?')">
             <div class="form-group">
                 <textarea name="message" class="form-control" rows="5" style="width:100%;" placeholder="“You’re the cleverest witch I’ve ever met Hermione.”
 "></textarea>
