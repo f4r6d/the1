@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block main %}
-    <h3>Unfortunately, I could not prepare this website for your birthday, but you can send me an SMS from here :)))</h3>
-    <form action="/messages" method="post">
-        <div class="form-group">
-            <textarea name="message" rows="10" cols="30" placeholder="Type your message to the admin."></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Send SMS!</button>
-    </form>
+        <form action="{{ url_for('messages') }}" method="post">
+            <div class="form-group">
+                <textarea name="message" class="form-control" rows="5" style="width:100%;" placeholder="“You’re the cleverest witch I’ve ever met Hermione.”
+"></textarea>
+            </div>
+
+            <button class="btn btn-link" type="submit"><img src="/static/reveal.gif" align='center' style="width:100%;"></button>
+        </form>
 {% endblock %}

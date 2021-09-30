@@ -81,9 +81,14 @@ def index():
 
 @app.route('/', methods=['POST'])
 def upload_files():
+    message = request.form.get('message')
+
+    if message.lower() in ['revealyoursecrets', 'reveal your secrets', 'reveal your secrets!', 'reveal ur secrets', 'reveal ur secrets!', 'reveal ur secret', 'revealyoursecret', 'reveal your secret', 'reveal your secret!']:
+        return redirect("/revealyoursecrets")
+
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
-    message = request.form.get('message')
+
     if filename != '':
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config['UPLOAD_EXTENSIONS']:
@@ -118,6 +123,20 @@ def upload_files():
         db.execute("INSERT INTO songs (user_id, track, message) VALUES(?, ?, ?)", session["user_id"], filename, message )
     flash(filename + ' Uploaded')
     return redirect(url_for('index'))
+
+
+@app.route("/revealyoursecrets", methods=['GET', 'POST'])
+@login_required
+def messages():
+    if request.method == "POST":
+        message = urllib.parse.quote(request.form.get('message'))
+        r = requests.get(f'https://api.kavenegar.com/v1/{os.environ.get("API_KEY")}/sms/send.json?receptor=09386048243&sender=10004346&message={message}')
+        if r.status_code == requests.codes.ok:
+            return render_template("send.html")
+    else:
+        return render_template("messages.html")
+
+
 
 @app.route("/users/<u_name>")
 @login_required
