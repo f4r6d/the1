@@ -32,6 +32,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.mp3', '.wav', '.aac', '.flac', '.m4a']
 
+BG = ''
+
 #  app.config['UPLOAD_PATH'] = 'static/music/'
 
 app.config['UPLOAD_PATH'] = 'https://yegane.s3.ir-thr-at1.arvanstorage.com/'
@@ -77,7 +79,7 @@ def index():
     files = db.execute("SELECT * FROM songs order by id desc")
     users = db.execute("SELECT * FROM users order by id")
     admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
-    return render_template('index.html', files=files, users=users, admin=admin)
+    return render_template('index.html', files=files, users=users, admin=admin, BG=BG)
 
 @app.route('/', methods=['POST'])
 def upload_files():
@@ -85,6 +87,17 @@ def upload_files():
 
     if message.lower() in ['revealyoursecrets', 'reveal your secrets', 'reveal your secrets!', 'reveal ur secrets', 'reveal ur secrets!', 'reveal ur secret', 'revealyoursecret', 'reveal your secret', 'reveal your secret!']:
         return redirect("/revealyoursecrets")
+    
+    global BG
+
+    if message.lower().strip() == 'knox':
+        BG = 'black'
+        flash(BG)
+        return redirect("/")
+
+    if message.lower().strip() in ['loomis', 'lumos maxima', 'lumos']:
+        BG = 'white'
+        return redirect("/")
 
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
