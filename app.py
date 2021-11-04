@@ -79,7 +79,6 @@ def index():
     files = db.execute("SELECT * FROM songs order by id desc")
     users = db.execute("SELECT * FROM users order by id")
     admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
-    flash(BG)
     return render_template('index.html', files=files, users=users, admin=admin, BG=BG)
 
 @app.route('/', methods=['POST'])
@@ -91,7 +90,7 @@ def upload_files():
     
     global BG
 
-    if message.lower().strip() == 'knox':
+    if message.lower().strip() in ['knox', 'nox']:
         BG = 'black'
         flash('Night Mode Activated :)')
         return redirect("/")
