@@ -89,6 +89,13 @@ def upload_files():
         return redirect("/revealyoursecrets")
     
     global BG
+    
+    if message.lower() in ['diagon', 'diagon alley', 'from the rubbish bin, three up and two across', 'three up and two across', 'three up',  'two across']:
+        files = db.execute("SELECT * FROM songs order by id desc")
+        users = db.execute("SELECT * FROM users order by id")
+        admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+        flash(BG)
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG, show_modal=True)
 
     if message.lower().strip() in ['knox', 'nox']:
         BG = 'black'
