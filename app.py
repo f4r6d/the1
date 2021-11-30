@@ -85,12 +85,12 @@ def index():
 def upload_files():
     message = request.form.get('message')
 
-    if message.lower() in ['revealyoursecrets', 'reveal your secrets', 'reveal your secrets!', 'reveal ur secrets', 'reveal ur secrets!', 'reveal ur secret', 'revealyoursecret', 'reveal your secret', 'reveal your secret!']:
+    if message.lower().strip() in ['revealyoursecrets', 'reveal your secrets', 'reveal your secrets!', 'reveal ur secrets', 'reveal ur secrets!', 'reveal ur secret', 'revealyoursecret', 'reveal your secret', 'reveal your secret!']:
         return redirect("/revealyoursecrets")
     
     global BG
     
-    if message.lower() in ['diagon', 'diagon alley', 'from the rubbish bin, three up and two across', 'three up and two across', 'three up',  'two across']:
+    if message.lower().strip() in ['diagon', 'diagon alley', 'from the rubbish bin, three up and two across', 'three up and two across', 'three up',  'two across']:
         files = db.execute("SELECT * FROM songs order by id desc")
         users = db.execute("SELECT * FROM users order by id")
         admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
