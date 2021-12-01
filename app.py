@@ -154,7 +154,12 @@ def upload_files():
                 logging.error(e)
 
         db.execute("INSERT INTO songs (user_id, track, message) VALUES(?, ?, ?)", session["user_id"], filename, message )
-    flash(filename + ' Uploaded')
+        flash(filename + ' Uploaded')
+
+        uplaoder = db.execute("SELECT * FROM users WHERE id= ?", session["user_id"])
+        upp = uplaoder[0]['username'].capitalize()
+        notif_email(f"{upp} 'has uplaoded' {filename}: \n{message}")
+    
     return redirect(url_for('index'))
 
 
