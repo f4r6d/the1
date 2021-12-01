@@ -94,8 +94,21 @@ def upload_files():
         files = db.execute("SELECT * FROM songs order by id desc")
         users = db.execute("SELECT * FROM users order by id")
         admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
-        flash(BG)
         return render_template('index.html', files=files, users=users, admin=admin, BG=BG, show_modal=True)
+    
+    if message.lower().strip() in ['wingardium leviosa', 'wingardioum leviosa','wingardiom leviosa', 'wingardiom', 'wingardium leviosaa', 'leviosa', 'leviosaa', 'winguardium leviosa', 'winguardium leviosaa', 'wingaurdium leviosa', 'wingaurdium leviosaa', 'wingaurdium', 'wingardium']:
+        if 'LeviOsa' in message or 'leviOsa' in message:
+            files = db.execute("SELECT * FROM songs order by id desc")
+            users = db.execute("SELECT * FROM users order by id")
+            admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+            flash("Oh, well done! See here, everyone, Miss Yegane's done it!")
+            return render_template('index.html', files=files, users=users, admin=admin, BG=BG, leviOsa=True)
+        else:
+            files = db.execute("SELECT * FROM songs order by id desc")
+            users = db.execute("SELECT * FROM users order by id")
+            admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+            flash("It's leviOsa, not levioSA!")
+            return render_template('index.html', files=files, users=users, admin=admin, BG=BG, levioSAA=True)
 
     if message.lower().strip() in ['knox', 'nox']:
         BG = 'black'
