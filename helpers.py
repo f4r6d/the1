@@ -6,6 +6,22 @@ from flask import redirect, render_template, request, session
 from functools import wraps
 
 
+import smtplib
+
+def notif_email(msg):
+    email = os.environ.get("email_from")
+    password = os.environ.get("email_pass")
+    send_to_email = os.environ.get("email_to")
+    message = msg
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email, password)
+    server.sendmail(email, send_to_email , message)
+    server.quit()
+
+
+
 def apology(message, code=400):
     """Render message as an apology to user."""
     def escape(s):
