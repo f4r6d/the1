@@ -157,8 +157,9 @@ def upload_files():
         flash(filename + ' Uploaded')
 
         uplaoder = db.execute("SELECT * FROM users WHERE id= ?", session["user_id"])
-        upp = uplaoder[0]['username'].capitalize()
-        notif_email(f"{upp} has uplaoded {filename}: \n{message}")
+        upp = uplaoder[0]['Username'].capitalize()
+        msgg = f"{upp} has uplaoded {filename}: {message}"
+        notif_email(msgg)
     
     return redirect(url_for('index'))
 
