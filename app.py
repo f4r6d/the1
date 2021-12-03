@@ -12,6 +12,7 @@ from helpers import apology, login_required, notif_email
 
 from werkzeug.utils import secure_filename
 
+from datetime import datetime, timedelta
 
 
 # arvan cloud
@@ -79,7 +80,11 @@ def index():
     files = db.execute("SELECT * FROM songs order by id desc")
     users = db.execute("SELECT * FROM users order by id")
     admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
-    return render_template('index.html', files=files, users=users, admin=admin, BG=BG)
+    now = datetime.now() + timedelta(minutes = 210)
+    if now.hour < 6:
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG, dementor=True)
+    else:
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG)
 
 @app.route('/', methods=['POST'])
 def upload_files():
@@ -89,6 +94,12 @@ def upload_files():
         return redirect("/revealyoursecrets")
     
     global BG
+    
+    if message.lower().strip() in ['patronum', 'expecto patronum', 'patronom', 'expecto patronom', 'patronoum', 'expecto patronoum', 'expectopatronum', 'expectopatronoum']:
+        files = db.execute("SELECT * FROM songs order by id desc")
+        users = db.execute("SELECT * FROM users order by id")
+        admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG, patronum=True)
     
     if message.lower().strip() in ['diagon', 'diagon alley', 'from the rubbish bin, three up and two across', 'three up and two across', 'three up',  'two across']:
         files = db.execute("SELECT * FROM songs order by id desc")
