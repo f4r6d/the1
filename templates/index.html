@@ -36,6 +36,71 @@
 
 
 
+
+    {% if  patronum %}
+
+      <div id="patronum">
+        <img src="static/expecto_patronum.gif" alt="processing..." />
+      </div>
+      <div id="otter">
+        <img src="static/patronus_otter.gif" alt="processing..." />
+      </div>
+
+      <audio autoplay>
+        <source src="/static/expecto_patronum.mp3" type="audio/mpeg">
+      </audio>
+
+      <script type="text/javascript">
+          $(document).ready(function(){
+            $('#patronum').delay(14000).fadeOut('fast');
+          });
+          $(document).ready(function(){
+            $('#otter').hide().delay(14000).fadeIn('slow').delay(15000).fadeOut('slow');
+          });
+        </script>
+
+
+    {% else %}
+      {% if  dementor %}
+        <div id="demen">
+          <img src="static/demen.gif" alt="processing..." />
+        </div>
+        <div id="demen2">
+          <img src="static/demen2.gif" alt="processing..." />
+        </div>
+        <div id="demen3">
+          <img src="static/demen3.gif" alt="processing..." />
+        </div>
+        <div id="blackk">
+          <img src="static/black.png" alt="processing..." />
+        </div>
+
+        <audio autoplay>
+          <source src="/static/dementor.mp3" type="audio/mpeg">
+        </audio>
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#demen').hide().delay(16000).fadeIn('slow').delay(87000).fadeOut('fast');
+          });
+          $(document).ready(function(){
+            $('#demen2').hide().delay(103000).fadeIn('slow').delay(1500).fadeOut('fast');
+          });
+          $(document).ready(function(){
+            $('#demen3').hide().delay(104500).fadeIn('slow').delay(15000).fadeOut('fast');
+          });
+          $(document).ready(function(){
+            $('#blackk').hide().delay(119500).fadeIn('slow');
+          });
+        </script>
+      {% endif %}
+    {% endif %}
+
+
+
+
+
+
     <h4>Upload music with your own message for Yegane!</h5></br>
     <form id="myform" method="POST" action="" enctype="multipart/form-data">
         <input type="file" name="file" accept="audio/mp3,audio/wav,audio/aac,audio/flac,audio/m4a"></br></br>
