@@ -118,6 +118,54 @@ tbody tr:nth-of-type(odd) {
 }
 
 
+#demen
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+}
+
+#demen2
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+}
+
+#demen3
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+}
+
+#blackk
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+        top: 0%;
+
+    height: 100%;
+}
+
+#patronum
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+}
+
+#otter
+{
+  position: fixed;
+    width: 100%;
+        left: 0%;
+}
+
+
+
+
 @media screen and (max-width:768px) {
 main.p-5 {
     padding:1rem !important;
