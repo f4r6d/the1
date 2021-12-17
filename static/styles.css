@@ -103,11 +103,11 @@ tbody tr:nth-of-type(odd) {
 
 #pageloader img
 {
-  left: 50%;
+  left: 0%;
   margin: auto;
 
   position: absolute;
-  top: 50%;
+  top: 0%;
 }
 
 #feather
