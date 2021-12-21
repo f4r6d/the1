@@ -81,7 +81,7 @@ def index():
     users = db.execute("SELECT * FROM users order by id")
     admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
     now = datetime.now() + timedelta(minutes = 210)
-    if now.hour < 6:
+    if now.hour > 2 and now.hour < 6:
         return render_template('index.html', files=files, users=users, admin=admin, BG=BG, dementor=True)
     else:
         return render_template('index.html', files=files, users=users, admin=admin, BG=BG)
@@ -94,6 +94,12 @@ def upload_files():
         return redirect("/revealyoursecrets")
     
     global BG
+    
+    if message.lower().strip() in ['hafez', 'fal',  'faal', 'haafez', 'shirazi', 'fal begir', 'faal begir', 'falam begir', 'fal migiri', 'bia falet begiram', 'yalda', 'chelle']:
+        files = db.execute("SELECT * FROM songs order by id desc")
+        users = db.execute("SELECT * FROM users order by id")
+        admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG, hafez=True)
     
     if message.lower().strip() in ['legilimens']:
         files = db.execute("SELECT * FROM songs order by id desc")
