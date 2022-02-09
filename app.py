@@ -104,7 +104,7 @@ def upload_files():
     
     
     
-    if message.lower().strip() in ['game', 'bazi']:
+    if message.lower().strip() in ['game', 'bazi', 'valentine']:
         files = db.execute("SELECT * FROM songs order by id desc")
         users = db.execute("SELECT * FROM users order by id")
         admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
