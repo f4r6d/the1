@@ -101,6 +101,18 @@ def upload_files():
         admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
         return render_template('index.html', files=files, users=users, admin=admin, BG=BG, hafez=True)
     
+    
+    
+    
+    if message.lower().strip() in ['game', 'bazi']:
+        files = db.execute("SELECT * FROM songs order by id desc")
+        users = db.execute("SELECT * FROM users order by id")
+        admin = db.execute("SELECT admin FROM users WHERE id= ?", session["user_id"])
+        return render_template('index.html', files=files, users=users, admin=admin, BG=BG, bazi=True)
+    
+    
+    
+    
     if message.lower().strip() in ['legilimens']:
         files = db.execute("SELECT * FROM songs order by id desc")
         users = db.execute("SELECT * FROM users order by id")
