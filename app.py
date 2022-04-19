@@ -194,7 +194,7 @@ def upload_files():
         uplaoder = db.execute("SELECT * FROM users WHERE id= ?", session["user_id"])
         upp = uplaoder[0]['username'].capitalize()
         msgg = filename + ' Uploaded by: ' + upp
-        notif_email('New music is uploaded!')
+        # notif_email('New music is uploaded!')
         
         flash(msgg)
     
