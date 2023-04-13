@@ -57,11 +57,11 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-uri = os.environ.get("DATABASE_URL")
-uri = uri.replace("postgres://", "postgresql://", 1)
-db = SQL(uri)
+# uri = os.environ.get("DATABASE_URL")
+# uri = uri.replace("postgres://", "postgresql://", 1)
+# db = SQL(uri)
 
-# db = SQL("sqlite:///yegane.db")
+db = SQL("sqlite:///yegane.db")
 
 
 
